@@ -1,7 +1,6 @@
 import React, {useState } from 'react';
 import styles from './App.module.css';
 import image from './images/image.png';
-
 import Cards from './components/Cards';
 import CountryPicker from './components/CountryPicker';
 import Chart from './components/Chart';
