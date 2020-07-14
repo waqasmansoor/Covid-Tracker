@@ -31,7 +31,7 @@ jobs:
       - name: installing npm
         run: npm install  
       - name: installing material ui
-        run: npm install @material-ui/core/Card  
+        run: npm install @material-ui/core  
       - name: running build
         run: npm run build
     # Runs a single command using the runners shell
