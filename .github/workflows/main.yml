@@ -31,7 +31,9 @@ jobs:
       - name: installing npm
         run: npm install  
       - name: installing material ui
-        run: npm install @material-ui/core  
+        run: npm install @material-ui/core
+      - name: installing chrts
+        run: npm install --save react-chartjs-2 chart.js  
       - name: running build
         run: npm run build
     # Runs a single command using the runners shell
