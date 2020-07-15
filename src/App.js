@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useState,useEffect} from 'react';
 import styles from './App.module.css';
 import image from './images/image.png';
 import Cards from './components/Cards';
@@ -12,24 +12,51 @@ import Chart from './components/Chart';
 function App(){
     
 const [country,setCountry]=useState('Global')
-const [chartData,setChartData]=useState({})
+const [countryData,setCountryData]=useState({})
 
+const url='https://covid19.mathdro.id/api'
+
+async function fetchData(url){
     
-    function selectCountry(country){
-        setCountry(country)
-    }    
+     let response = await fetch(url)
+     let { confirmed, recovered, deaths, lastUpdate } = await response.json()
+    
+    
+    setCountryData({ confirmed, recovered, deaths, lastUpdate })
+}
 
-    async function countryData(countryData){
-        setChartData(countryData)
+useEffect(() => {
+        fetchData(url)       
+       }
+       ,[])
+
+     
+    
+
+      function selectCountry(countryName){
+        
+        if(countryName!=='Global')
+          {
+              fetchData(url+'/countries/'+countryName)
+          }
+          else
+          {
+            fetchData(url)
+              
+          }
+         setCountry(countryName)
+        
+       
+      
     }
-    
+  
 
     return (
         <div className={styles.container}>
             <img className={styles.image} src={image} alt='COVID-19'/>
-            <Cards country={country} countryData={countryData}/>
+            <Cards data={countryData}/>
             <CountryPicker selectCountry={selectCountry}/>
-            <Chart countryData={chartData} country={country}/>
+            <Chart country={country} countryData={countryData}/>
         </div>
     )
 }

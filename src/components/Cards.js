@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -8,34 +8,13 @@ import styles from './Cards.module.css';
 
 
 
-export default function Cards({ country, countryData }) {
+export default function Cards({data}) {
   
-  const [data, setData] = useState({})
-  var url = 'https://covid19.mathdro.id/api'
-
-
-  if (country && country !== 'Global') {
-    url = url + '/countries/' + country
-
-  }
-
-  useEffect(() => {
-    async function getData() {
-
-      let response = await fetch(url)
-
-
-      let { confirmed, recovered, deaths, lastUpdate } = await response.json()
-      setData({ confirmed, recovered, deaths, lastUpdate })
-      if (country && country !== 'Global')
-        countryData({ confirmed, recovered, deaths })
-    }
-    try {
-      getData()
-    }
-
-    catch (error) { console.log(error) }
-  }, [url])
+  
+  
+  
+  
+  
 
 
   if (!data.hasOwnProperty('confirmed')) {

@@ -12,32 +12,29 @@ import styles from './Chart.module.css';
     
     var url='https://covid19.mathdro.id/api'
     
-    function Chart({countryData,country}){
+    function Chart({country,countryData}){
       const [chartData,setChartData]=useState([])
-      var getData=false
       
       
       
-      if(country==='Global'){getData=true}
-      
-      
-      
+      console.log('charts')
       useEffect(()=>{
         async function getChartData(){
           let response=await fetch(`${url}/daily`)
           let chartData=await response.json()
             setChartData(chartData)
+            
       
             
           }
-        try{
         
-        getChartData()
+        if(country==='Global'){
+          getChartData()
+
         }
-        catch(error){console.log(error)}
-      },[getData]
-      
-      )
+        
+        
+      },[country])
 
 
       if(country==='Global'){
