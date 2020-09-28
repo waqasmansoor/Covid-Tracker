@@ -38,4 +38,4 @@ jobs:
         run: npm run build
     # Runs a single command using the runners shell
       - name: deploying using surge
-        run: surge ./build expense-tracker-by-waqas.surge.sh --token ${{ secrets.COVIDTRACKER }}
+        run: surge ./build covid-tracker-by-waqas.surge.sh --token ${{ secrets.COVIDTRACKER }}
